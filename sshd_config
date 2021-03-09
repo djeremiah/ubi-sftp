@@ -1,0 +1,13 @@
+Port 2222
+UseDNS no
+
+HostKey /opt/sftp/ssh_host_rsa_key
+HostKey /opt/sftp/ssh_host_ecdsa_key
+AuthorizedKeysFile  /etc/ssh/%u/authorized_keys
+
+ChallengeResponseAuthentication no
+
+Subsystem   sftp    internal-sftp
+ForceCommand internal-sftp -d /data
+
+PidFile /opt/sftp/sshd.pid
