@@ -7,7 +7,7 @@ ADD authorized_keys /etc/ssh/sftp-user/
 ADD sshd_config /opt/sftp/
 ADD run /opt/sftp/
 
-RUN useradd --no-user-group sftp-user && usermod -p "*" sftp-user && \
+RUN useradd --no-user-group -u 11943 sftp-user && usermod -p "*" sftp-user && \
   chgrp -R 0 /etc/ssh/sftp-user /opt/sftp && \
   chmod g=u /etc/ssh/sftp-user /opt/sftp && \
   chmod 755 /etc/ssh/sftp-user && \
@@ -17,5 +17,5 @@ VOLUME ["/data"]
 
 EXPOSE 2222
   
-USER 1001
+USER 11943
 ENTRYPOINT ["/opt/sftp/run"]
