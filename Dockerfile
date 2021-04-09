@@ -1,7 +1,9 @@
 FROM registry.access.redhat.com/ubi8/ubi-minimal
 
 RUN microdnf --nodocs -y install openssh-server --enablerepo=rhel-8-for-x86_64-baseos-rpms && \
-  microdnf clean all
+  microdnf clean all && \
+  rm -rf /etc/pki/entitlement && \
+  rm -rf /etc/rhsm
 
 ADD authorized_keys /etc/ssh/sftp-user/
 ADD sshd_config /opt/sftp/
