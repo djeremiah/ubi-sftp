@@ -7,7 +7,7 @@ AuthorizedKeysFile  /etc/ssh/%u/authorized_keys
 
 ChallengeResponseAuthentication no
 
-Subsystem   sftp    internal-sftp
+Subsystem   sftp    internal-sftp   -l DEBUG3
 ForceCommand internal-sftp -d /data
 
 PidFile /opt/sftp/sshd.pid
