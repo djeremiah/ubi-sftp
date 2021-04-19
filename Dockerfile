@@ -10,6 +10,7 @@ ADD run /opt/sftp/
 
 RUN useradd --no-user-group -u 11943 sftp-user && usermod -p "*" sftp-user && \
   mkdir /data && \
+  mkdir -p /etc/ssh/sftp-user && \
   chown sftp-user:root /data && \
   chgrp -R 0 /etc/ssh/sftp-user /opt/sftp /data && \
   chmod g=u /etc/ssh/sftp-user /opt/sftp /data && \
