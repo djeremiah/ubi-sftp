@@ -1,6 +1,15 @@
 #!/bin/sh
-ssh-keygen -f /opt/sftp/ssh_host_rsa_key -N '' -t rsa
-ssh-keygen -f /opt/sftp/ssh_host_ecdsa_key -N '' -t ecdsa
+if [ ! -f /opt/sftp/ssh_host_rsa_key ]; then
+    ssh-keygen -f /opt/sftp/ssh_host_rsa_key -N '' -t rsa
+fi
+if [ ! -f /opt/sftp/ssh_host_ecdsa_key ]; then
+    ssh-keygen -f /opt/sftp/ssh_host_ecdsa_key -N '' -t ecdsa
+fi
+
+if [ -f /opt/sftp/pki/authorized_keys ]; then
+    cp /opt/sftp/pki/authorized_keys /etc/ssh/sftp-user/
+    chmod 644 /etc/ssh/sftp-user/authorized_keys
+fi
 
 exec /usr/sbin/sshd -D -e -f /opt/sftp/sshd_config
 
