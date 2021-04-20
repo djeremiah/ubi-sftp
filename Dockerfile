@@ -14,7 +14,7 @@ RUN useradd -u 11943 -U sftp-user && \
   chown sftp-user:root /etc/ssh/sftp-user && \
   chmod 755 /etc/ssh/sftp-user && \
   chgrp -R 0 /opt/sftp && \
-  chmod g=u /opt/sftp && \
+  chmod g=u /opt/sftp
 
 EXPOSE 2222
   
